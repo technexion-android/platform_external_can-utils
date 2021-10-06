@@ -58,7 +58,7 @@
 int main(int argc, char **argv)
 {
 	int s; /* can raw socket */ 
-	int required_mtu;
+	unsigned long required_mtu;
 	int mtu;
 	int enable_canfd = 1;
 	struct sockaddr_can addr;
@@ -142,7 +142,7 @@ int main(int argc, char **argv)
 	}
 
 	/* send frame */
-	if (write(s, &frame, required_mtu) != required_mtu) {
+	if (write(s, &frame, required_mtu) != (long)required_mtu) {
 		perror("write");
 		return 1;
 	}
